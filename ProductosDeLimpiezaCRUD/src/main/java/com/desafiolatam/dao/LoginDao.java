@@ -1,7 +1,5 @@
 package com.desafiolatam.dao;
 
-import com.desafiolatam.modelo.Credencial;
-
 public interface LoginDao {
-	public Credencial obtenerCredenciales(String usuario, String clave);
+	public boolean obtenerCredenciales(String usuario, String clave);
 }

@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.desafiolatam.facade.Facade;
-import com.desafiolatam.modelo.Credencial;
 
 @WebServlet("/LoginUsuario")
 public class LoginUsuario extends HttpServlet {
@@ -27,7 +26,6 @@ public class LoginUsuario extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Credencial credencial = new Credencial();
 		String requestUsuario = "";
 		String requestPass = "";
 		
@@ -43,9 +41,9 @@ public class LoginUsuario extends HttpServlet {
 		cookie.setComment("Se guarda nombre de usuario logueado");
 		response.addCookie(cookie);
 		
-		credencial = facade.obtenerCredenciales(requestUsuario, requestPass);
+		boolean verificado = facade.obtenerCredenciales(requestUsuario, requestPass);
 		
-		if(!credencial.getUsuario().contentEquals(requestUsuario) || !credencial.getClave().contentEquals(requestPass)) {
+		if(verificado == false) {
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('Usuario o password incorrecto');");
 			out.println("location='login.jsp';");

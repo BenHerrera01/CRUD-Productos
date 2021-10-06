@@ -12,7 +12,7 @@ public class LoginDaoImpl implements LoginDao{
 	private PreparedStatement pstm;
 	private ResultSet rs;
 	@Override
-	public Credencial obtenerCredenciales(String usuario, String clave) {
+	public boolean obtenerCredenciales(String usuario, String clave) {
 		
 		String sql = "SELECT * FROM credenciales " + "WHERE usuario = ? and clave = ?";
 		Credencial credencial = new Credencial();
@@ -33,13 +33,11 @@ public class LoginDaoImpl implements LoginDao{
 			e.printStackTrace();
 		}
 		
-		if(credencial.getUsuario()==null) {
-			credencial.setUsuario("no encontrado");
+		if (credencial.getUsuario() == null || credencial.getClave() == null) {
+			return false;
+		} else if (!credencial.getUsuario().contentEquals(usuario) || !credencial.getClave().contentEquals(clave)) {
+			return false;
 		}
-		if(credencial.getClave()==null) {
-			credencial.setClave("no encontrado");
-		}
-		return credencial;
+		return true;
 	}
-
 }

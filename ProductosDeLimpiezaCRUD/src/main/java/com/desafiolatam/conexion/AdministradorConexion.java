@@ -4,6 +4,15 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
+
+/**
+ * @author Benjamin Herrera
+ * 
+ * Clase que genera y obtiene una conexión a la base de datos, implementado bajo patrón Singleton.
+ *
+ *
+ */
 public class AdministradorConexion {
 	private static Connection conn;
 	private static final String usr = "productos_admin";

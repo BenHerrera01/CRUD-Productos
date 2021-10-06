@@ -11,10 +11,17 @@ import com.desafiolatam.dao.ProductoCategoriaDaoImpl;
 import com.desafiolatam.dao.ProductoDao;
 import com.desafiolatam.dao.ProductoDaoImpl;
 import com.desafiolatam.modelo.Categoria;
-import com.desafiolatam.modelo.Credencial;
 import com.desafiolatam.modelo.Producto;
 import com.desafiolatam.modelo.ProductoCategoria;
 
+
+/**
+ * @author Benjamin Herrera
+ * 
+ * Clase que proporciona todos los métodos de la aplicación, para ser
+ * usados en los controladores.
+ *
+ */
 public class Facade {
 	public Categoria buscarCategoria(int id) {
 		CategoriaDao categoriaDao = new CategoriaDaoImpl();
@@ -56,7 +63,7 @@ public class Facade {
 		return productoCategoriaDao.mostrarProductoCategoria();
 	}
 	
-	public Credencial obtenerCredenciales(String usuario, String clave) {
+	public boolean obtenerCredenciales(String usuario, String clave) {
 		LoginDao loginDao = new LoginDaoImpl();
 		return loginDao.obtenerCredenciales(usuario, clave);
 	}
