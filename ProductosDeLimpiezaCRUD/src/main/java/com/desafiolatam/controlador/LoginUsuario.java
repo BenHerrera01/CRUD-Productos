@@ -36,10 +36,7 @@ public class LoginUsuario extends HttpServlet {
 
 		DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 		Date date = new Date();
-		Cookie cookie = new Cookie("hora", dateFormat.format(date));
-		cookie.setMaxAge(9000);
-		cookie.setComment("Se guarda nombre de usuario logueado");
-		response.addCookie(cookie);
+		
 		
 		boolean verificado = facade.obtenerCredenciales(requestUsuario, requestPass);
 		
@@ -49,6 +46,10 @@ public class LoginUsuario extends HttpServlet {
 			out.println("location='login.jsp';");
 			out.println("</script>");
 		}else{
+			Cookie cookie = new Cookie("hora", dateFormat.format(date));
+			cookie.setMaxAge(9000);
+			cookie.setComment("Se guarda nombre de usuario logueado");
+			response.addCookie(cookie);
 			HttpSession sesionUsuario= request.getSession(true);
 			sesionUsuario.setMaxInactiveInterval(600);
 			sesionUsuario.setAttribute("logueado", requestUsuario);
